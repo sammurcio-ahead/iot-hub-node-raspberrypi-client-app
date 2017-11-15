@@ -117,17 +117,20 @@ function initClient(connectionStringParam, credentialPath) {
   wpi.pinMode(config.LEDPin, wpi.OUTPUT);
   messageProcessor = new MessageProcessor(config);
 
-  bi.start();
-  var deviceInfo = {device:"RaspberryPi",language:"NodeJS"};
-  if(bi.isBIEnabled()) {
-    bi.trackEventWithoutInternalProperties('yes', deviceInfo);
-    bi.trackEvent('success', deviceInfo);
+  try {
+    bi.start();
+    var deviceInfo = { device: "RaspberryPi", language: "NodeJS" };
+    if (bi.isBIEnabled()) {
+      bi.trackEventWithoutInternalProperties('yes', deviceInfo);
+      bi.trackEvent('success', deviceInfo);
+    }
+    else {
+      bi.trackEventWithoutInternalProperties('no', deviceInfo);
+    }
+    bi.flush();
+  } catch (e) {
+    //ignore
   }
-  else
-  {
-    bi.trackEventWithoutInternalProperties('no', deviceInfo);
-  }
-  bi.flush();
 
   // create a client
   // read out the connectionString from process environment
