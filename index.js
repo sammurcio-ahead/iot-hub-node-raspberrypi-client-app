@@ -118,6 +118,10 @@ function initClient(connectionStringParam, credentialPath) {
   messageProcessor = new MessageProcessor(config);
 
   try {
+    var firstTimeSetting = false;
+    if (!fs.existsSync(path.join(process.env.HOME, '.iot-hub-getting-started/biSettings.json'))) {
+      firstTimeSetting = true;
+    }
     bi.start();
     var deviceInfo = { device: "RaspberryPi", language: "NodeJS" };
     if (bi.isBIEnabled()) {
@@ -125,7 +129,12 @@ function initClient(connectionStringParam, credentialPath) {
       bi.trackEvent('success', deviceInfo);
     }
     else {
+      bi.disableRecordingClientIP();
       bi.trackEventWithoutInternalProperties('no', deviceInfo);
+    }
+    if(firstTimeSetting) {
+      console.log("Telemetry setting will be remembered. If you would like to reset, please delete following file and run the sample again");
+      console.log("~/.iot-hub-getting-started/biSettings.json\n");
     }
     bi.flush();
   } catch (e) {
