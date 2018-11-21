@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const wpi = require('wiring-pi');
+const wpi = require('node-wiring-pi');
 
 const Client = require('azure-iot-device').Client;
 const ConnectionString = require('azure-iot-device').ConnectionString;
