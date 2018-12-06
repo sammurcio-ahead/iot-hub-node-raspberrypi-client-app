@@ -27,7 +27,7 @@ Sensor.prototype.init = function (callback) {
 Sensor.prototype.read = function (callback) {
   this.bme280.readSensorData()
     .then((data) => {
-      data.temperature = data.temperature_C;
+      data.temperature = data.temperature_f;
       callback(null, data);
     })
     .catch(callback);
