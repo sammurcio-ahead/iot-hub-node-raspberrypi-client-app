@@ -28,6 +28,8 @@ Sensor.prototype.read = function (callback) {
   this.bme280.readSensorData()
     .then((data) => {
       data.temperature = data.temperature_f;
+      data.longitude = -87.7526;
+      data.latitude = 41.9742
       callback(null, data);
     })
     .catch(callback);
