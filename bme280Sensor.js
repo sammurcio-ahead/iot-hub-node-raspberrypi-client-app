@@ -27,7 +27,7 @@ Sensor.prototype.init = function (callback) {
 Sensor.prototype.read = function (callback) {
   this.bme280.readSensorData()
     .then((data) => {
-      data.temperature = data.temperature_F;
+      data.temperature = data.temperature_C;
       data.longitude = -87.7526;
       data.latitude = 41.9742;
       callback(null, data);
