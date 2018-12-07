@@ -1,9 +1,9 @@
 {
   "simulatedData": false,
-  "interval": 2000,
-  "deviceId": "Raspberry Pi Node",
+  "interval": 4000,
+  "deviceId": "SamPi",
   "LEDPin": 5,
-  "messageMax": 256,
+  "messageMax": 100,
   "credentialPath": "~/.iot-hub",
   "temperatureAlert": 30,
   "i2cOption": {

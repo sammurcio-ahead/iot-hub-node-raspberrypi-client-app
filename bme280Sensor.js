@@ -30,6 +30,7 @@ Sensor.prototype.read = function (callback) {
       data.temperature = data.temperature_C;
       data.longitude = -87.7526;
       data.latitude = 41.9742;
+	console.log(data)
       callback(null, data);
     })
     .catch(callback);
